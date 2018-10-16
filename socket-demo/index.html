@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+<head>
+	<title>Bitcoin Real-Time Price</title>
+	<script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+	<script>
+		function connectSocket() {
+			console.log('Opening socket connection');
+			var socket = io.connect();
+
+			socket.on('stream', function(data) {
+				console.log('Rdceived message: '+ data.price);
+				document.getElementById('price').innerHTML = '&#163;' + data.price.toLocaleString();
+			});
+		}
+	</script>
+	<div id="tracker">
+		<h1>Bitcoin Price Tracker</h1>
+		<button id="btn" onclick='connectSocket()'>Connect</button>
+		<p>
+			The latest buy price of Bitcopin is: 
+		</p>
+		<div id="price">-</div>
+	</div>
+</body>
+</html>

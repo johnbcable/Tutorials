@@ -1,0 +1,20 @@
+.Doc {
+	padding: .8rem 0 1.6rem;
+	margin-bottom: 1.6rem;
+	text-align: left;
+	border-top: .1rem solid grey;
+	border-bottom: .1rem solid grey;
+}
+
+.Doc--property {
+	margin-top: 1.6rem;
+}
+
+.Doc--required {
+	color: red;
+}
+
+.Doc--description {
+	color: grey;
+	font-style: italic;
+}

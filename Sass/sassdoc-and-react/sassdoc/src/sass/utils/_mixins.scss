@@ -1,0 +1,73 @@
+/* -----------------------------------------------------------------------------
+ * Mixins
+ * -------------------------------------------------------------------------- */
+
+/// A mixin to create a square that can then be extended
+///
+/// @content [whatever you would like to style the square]
+///
+/// @param {Size} $size [50px] - The width and height of the square
+/// @param {Colour} $bgcolor [$colors-blue] - The background colour of the square
+/// @param {Colour} $bordercolor [#000000] - The border colour of the square
+/// @param {Size} $bordersize [2px] - The size of the border of the square
+///
+/// @example scss - square `.foo`
+///   .foo {
+///     @include square() {
+///          color: white;
+///     }
+///   }
+@mixin square($size: 50px, $bgcolor: $colors-blue, $bordercolor: #000000, $bordersize: 2px) {
+	width: $size;
+	height: $size;
+	background-color: $bgcolor;
+	border: $bordersize solid $bordercolor;
+	@content;
+}
+
+/// Helper mixin to style placeholder content cross-browser
+///
+/// @content [whatever you would like to style the placeholder]
+///
+/// @example scss - placeholder `.foo`
+///   .foo {
+///     @include placeholder() {
+///          color: white;
+///     }
+///   }
+@mixin placeholder() {
+
+    &::-webkit-input-placeholder { @content; }
+
+    &:-moz-placeholder { @content; }
+
+    &::-moz-placeholder { @content; }
+
+    &:-ms-input-placeholder { @content; }
+}
+
+/// Return the value in pixels of the breakpoint key provided
+///
+/// @param {Var} $grid-breakpoints - The variable object used to find the right size
+/// @param {String} $breakpoint - The key to reference the variable object for
+///
+/// @example scss - placeholder `.foo`
+///   .foo {
+///     width: breakpoint-var(phone);
+///   }
+@function breakpoint-var($breakpoint) {
+    @return map-get($breakpoints, $breakpoint);
+}
+
+/// Return the value in pixels of the breakpoint key provided
+///
+/// @param {Size} $a - The first value to be added
+/// @param {Size} $b - The second value to be added
+///
+/// @example scss - placeholder `.foo`
+///   .foo {
+///     width: add(10px, 25px);
+///   }
+@function add($a, $b) {
+    @return $a + $b;
+}

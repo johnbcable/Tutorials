@@ -1,0 +1,18 @@
+.Square {
+	width: 100px;
+	height: 100px;
+	padding: 20px;
+	color: white;
+	background-color: blue;
+	border: 5px solid black;
+	word-break: break-word;
+}
+
+.Square.spinning {
+	animation: spin 1s infinite;
+}
+
+@keyframes spin {
+	from { transform: rotate(0deg); }
+	to   { transform: rotate(360deg); }
+}

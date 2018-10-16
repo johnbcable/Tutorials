@@ -1,0 +1,412 @@
+// BASE AND VISUAL STYLES
+$base: #24344b;
+$dark: #0d1526;
+$light: #1e90ff;
+$accent: #f03c4d;
+$black: #020911;
+$children: header, menu, hero, main, banner, extra, image, toolbar;
+@mixin children($values) {
+  @each $value in $values {
+    &.#{$value}::after {
+      content: '#{$value}';
+    }
+  }
+}
+* {
+  box-sizing: border-box;
+	margin: 0;
+  padding: 0;
+}
+html,
+body {
+  height: 100%;
+}
+html {
+  font-size: 10px;
+}
+body {
+  margin: 0;
+  font-size: 1.6rem;
+  padding: 50px;
+  font-family: 'Lato';
+}
+h1 {
+  margin: 64px 0 32px;
+  font-size: 32px;
+	font-weight: 700;
+  text-transform: uppercase;
+}
+p {
+  margin: 24px 0;
+  font-size: 1.6rem;
+}
+code,
+pre {
+  font-family: 'Source Code Pro';
+  letter-spacing: 1px;
+  background: $dark;
+  display: inline-block;
+  padding: 20px;
+  color: white;
+  border-radius: 5px;
+  margin: 0 auto;
+  min-width: 575px;
+}
+.wrapper {
+  margin: 40px 0;
+}
+.child,
+.area,
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 10px 20px;
+
+  @include children($children);
+}
+.area {
+  color: $base;
+  font-weight: 700;
+  border-right: 1px dashed $base;
+  border-bottom: 1px dashed $base;
+
+  &:nth-child(4n + 1) {
+    border-left: 1px dashed $base;
+  }
+
+  &:nth-child(-n + 4) {
+    border-top: 1px dashed $base;
+  }
+  &:nth-child(1),
+  &:nth-child(2),
+  &:nth-child(3),
+  &:nth-child(4) {
+    grid-row: 1;
+  }
+  &:nth-child(5),
+  &:nth-child(6),
+  &:nth-child(7),
+  &:nth-child(8) {
+    grid-row: 2;
+  }
+  &:nth-child(9),
+  &:nth-child(10),
+  &:nth-child(11),
+  &:nth-child(12) {
+    grid-row: 3;
+  }
+  &:nth-child(13),
+  &:nth-child(14),
+  &:nth-child(15),
+  &:nth-child(16) {
+    grid-row: 4;
+  }
+  &:nth-child(1),
+  &:nth-child(5),
+  &:nth-child(9),
+  &:nth-child(13) {
+    grid-column: 1;
+  }
+  &:nth-child(2),
+  &:nth-child(6),
+  &:nth-child(10),
+  &:nth-child(14) {
+    grid-column: 2;
+  }
+  &:nth-child(3),
+  &:nth-child(7),
+  &:nth-child(11),
+  &:nth-child(15) {
+    grid-column: 3;
+  }
+  &:nth-child(4),
+  &:nth-child(8),
+  &:nth-child(12),
+  &:nth-child(16) {
+    grid-column: 4;
+  }
+}
+.item {
+  background: rgba($accent, .85);
+  border: 3px solid $base;
+}
+.header {
+  background: #0d1526;
+}
+.menu {
+  background: $accent;
+}
+.hero {
+  background: $light;
+}
+.main {
+  background: $base;
+}
+.banner {
+  background: #FFD166;
+}
+.extra {
+  background: #06D6A0;
+}
+.image {
+  background: #BEE9E8;
+}
+.toolbar {
+  background: #6a727c;
+}
+.banner,
+.extra,
+.image {
+  color: black;
+}
+.grid {
+  padding: 60px;
+  border: 2px solid black;
+  width: 575px;
+}
+//////////////////////////////////////
+// DEFINING GRID
+#define-grid {
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 40px 2fr repeat(2, minmax(75px, 1fr));
+  }
+}
+
+// ITEM PLACEMENT
+#placement,
+#placement-no-lines {
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 40px 2fr repeat(2, minmax(75px, 1fr));
+  }
+  #item1 {
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: -1;
+  }
+  #item2 {
+    grid-column: 3;
+    grid-row: 1;
+  }
+}
+
+// PLACEMENT SHORTHAND AND SPAN
+#placement-shorthand {
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 40px 2fr repeat(2, minmax(75px, 1fr));
+  }  
+  #item1 {
+    grid-column: 1;
+    grid-row: 2 / 4;
+  }
+  #item2 {
+    grid-column: 2 / span 3;
+    grid-row: 3 / span 2;
+  }
+}
+
+// PLACEMENT BY AREA
+#placement-area {
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 40px 2fr repeat(2, minmax(75px, 1fr));
+  }
+  #item1 {
+    grid-area: 2 / 1 / span 2 / span 3;
+  }
+  #item2 {
+    grid-area: 4 / 4;
+  }
+}
+
+// PLACEMENT BY NAME
+#placement-name {
+  #item1 {
+    grid-area: item1;
+  }
+  #item2 {
+    grid-area: item2;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 40px 2fr repeat(2, minmax(75px, 1fr));
+    grid-template-areas:
+      ". . . ."
+      ". . . item1"
+      "item2 item2 item2 item1"
+      "item2 item2 item2 .";
+  }
+}
+
+
+//RESPONSIVE
+
+#responsive {
+  .header { grid-area: header; }
+  .menu { grid-area: menu; }
+  .hero { grid-area: hero; }
+  .main { grid-area: main; }
+  .banner { grid-area: banner; }
+  .extra { grid-area: extra; }
+  .image { grid-area: image; }
+
+  .grid {
+    @media (min-width: 721px) {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 40px 2fr repeat(4, 1fr);
+      grid-template-areas:
+      "header header header header"
+      "hero hero hero hero"
+      "menu main main main"
+      "menu main main main"
+      "menu banner banner banner"
+      "menu extra image image";
+    }
+
+    @media (min-width: 1001px) {
+      grid-template-areas:
+        "header menu menu menu"
+        "hero hero hero hero"
+        "hero hero hero hero"
+        "main main . image"
+        "main main . extra"
+        "banner banner banner banner";
+    }
+  }
+}
+
+// OVERLAP
+#overlap {
+  .header { grid-area: header; }
+  .menu { grid-area: menu; }
+  .hero { grid-area: hero; }
+  .main { grid-area: main; }
+  .banner { grid-area: banner; }
+  .extra { grid-area: extra; }
+  .image { grid-area: image; }
+
+  .grid {
+    @media (min-width: 721px) {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 40px 2fr repeat(4, 1fr);
+      grid-template-areas:
+      "header header header header"
+      "hero hero hero hero"
+      "menu main main main"
+      "menu main main main"
+      "menu banner banner banner"
+      "menu extra image image";
+    }
+
+    @media (min-width: 1001px) {
+      grid-template-areas:
+        "header menu menu menu"
+        "hero hero hero hero"
+        "hero hero hero hero"
+        "main main . image"
+        "main main . extra"
+        "banner banner banner banner";
+    }
+  }
+
+  .toolbar {
+    grid-column: 4;
+    grid-row: 1 / -1;
+    opacity: .85;
+    z-index: 1;
+  }
+}
+
+
+// GRID GAP
+#grid-gap {
+  .header { grid-area: header; }
+  .menu { grid-area: menu; }
+  .hero { grid-area: hero; }
+  .main { grid-area: main; }
+  .banner { grid-area: banner; }
+  .extra { grid-area: extra; }
+  .image { grid-area: image; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 40px 2fr repeat(4, 1fr);
+    grid-gap: 5px;
+    grid-template-areas: 
+      "header menu menu menu"
+      "hero hero hero hero"
+      "hero hero hero hero"
+      "main main . image"
+      "main main . extra"
+      "banner banner banner banner";
+  }
+}
+
+//FALLBACK
+#fallback {
+    //DEFINE MOBILE SPECIFIC STYLES HERE
+  .header { grid-area: header; }
+  .menu { grid-area: menu; }
+  .hero { grid-area: hero; }
+  .main { grid-area: main; }
+  .banner { grid-area: banner; }
+  .extra { grid-area: extra; }
+  .image { grid-area: image; }
+  
+  .grid {
+    @media (min-width: 721px) {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 40px 2fr repeat(4, 1fr);
+      grid-template-areas:
+        "header header header header"
+        "hero hero hero hero"
+        "menu main main main"
+        "menu main main main"
+        "menu banner banner banner"
+        "menu extra image image";
+    }
+
+    @media (min-width: 1001px) {
+      grid-template-areas:
+        "header menu menu menu"
+        "hero hero hero hero"
+        "hero hero hero hero"
+        "main main . image"
+        "main main . extra"
+        "banner banner banner banner";
+    }
+  }
+
+  @supports not (display:grid) {
+    @media (min-width: 721px) {
+      .header,
+      .extra {
+        float: left;
+        width: 50%;
+      }
+    }
+  }
+
+  @media (min-width: 721px) and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .header,
+    .extra {
+      float: left;
+      width: 50%;
+    }
+  }
+}

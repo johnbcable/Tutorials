@@ -1,0 +1,370 @@
+<doctype HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+<h1>Defining the grid</h1>
+<pre>
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 40px 2fr repeat(2, minmax(75px, 1fr));
+}
+</pre>
+<p>Grid lines shown for demonstration</p>
+<div id="define-grid" class="wrapper">
+  <div class="grid">
+    <div class="area">1</div>
+    <div class="area">2</div>
+    <div class="area">3</div>
+    <div class="area">4</div>
+    <div class="area">5</div>
+    <div class="area">6</div>
+    <div class="area">7</div>
+    <div class="area">8</div>
+    <div class="area">9</div>
+    <div class="area">10</div>
+    <div class="area">11</div>
+    <div class="area">12</div>
+    <div class="area">13</div>
+    <div class="area">14</div>
+    <div class="area">15</div>
+    <div class="area">16</div>
+  </div>
+</div>
+
+<hr>
+
+<h1>Item placement</h1>
+<pre>
+#item1 {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  grid-row-start: 3;
+  grid-row-end: -1;
+}
+#item2 {
+  grid-column: 3;
+  grid-row: 1;
+}
+</pre>
+<div id="placement" class="wrapper">
+  <div class="grid">
+    <div class="area">1</div>
+    <div class="area">2</div>
+    <div class="area">3</div>
+    <div class="area">4</div>
+    <div class="area">5</div>
+    <div class="area">6</div>
+    <div class="area">7</div>
+    <div class="area">8</div>
+    <div class="area">9</div>
+    <div class="area">10</div>
+    <div class="area">11</div>
+    <div class="area">12</div>
+    <div class="area">13</div>
+    <div class="area">14</div>
+    <div class="area">15</div>
+    <div class="area">16</div>
+    <div id="item1" class="item">item 1</div>
+    <div id="item2" class="item">item 2</div>
+  </div>
+</div>
+
+<p>Item placement without grid lines</p>
+<div id="placement-no-lines" class="wrapper">
+  <div class="grid">
+    <div id="item1" class="item">item 1</div>
+    <div id="item2" class="item">item 2</div>
+  </div>
+</div>
+
+<hr>
+
+<h1>Placement with shorthand & span keyword</h1>
+<pre>
+#item1 {
+  grid-column: 1;
+  grid-row: 2 / 4;
+}
+#item2 {
+  grid-column: 2 / span 3;
+  grid-row: 3 / span 2;
+}
+</pre>
+<div id="placement-shorthand" class="wrapper">
+  <div class="grid">
+    <div class="area">1</div>
+    <div class="area">2</div>
+    <div class="area">3</div>
+    <div class="area">4</div>
+    <div class="area">5</div>
+    <div class="area">6</div>
+    <div class="area">7</div>
+    <div class="area">8</div>
+    <div class="area">9</div>
+    <div class="area">10</div>
+    <div class="area">11</div>
+    <div class="area">12</div>
+    <div class="area">13</div>
+    <div class="area">14</div>
+    <div class="area">15</div>
+    <div class="area">16</div>
+    <div id="item1" class="item">item 1</div>
+    <div id="item2" class="item">item 2</div>
+  </div>
+</div>
+
+<hr>
+
+<h1>Placement by area</h1>
+<pre>
+#item1 {
+  grid-area: 2 / 1 / span 2 / span 3;
+}
+#item2 {
+  grid-area: 4 / 4;
+}
+</pre>
+<div id="placement-area" class="placement wrapper">
+  <div class="grid">
+    <div class="area">1</div>
+    <div class="area">2</div>
+    <div class="area">3</div>
+    <div class="area">4</div>
+    <div class="area">5</div>
+    <div class="area">6</div>
+    <div class="area">7</div>
+    <div class="area">8</div>
+    <div class="area">9</div>
+    <div class="area">10</div>
+    <div class="area">11</div>
+    <div class="area">12</div>
+    <div class="area">13</div>
+    <div class="area">14</div>
+    <div class="area">15</div>
+    <div class="area">16</div>
+    <div id="item1" class="item">item 1</div>
+    <div id="item2" class="item">item 2</div>
+  </div>
+</div>
+
+<hr>
+
+<h1>Placement by name</h1>
+<pre>
+#item1 {
+  grid-area: item1;
+}
+#item2 {
+  grid-area: item2;
+}
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 40px 2fr repeat(2, minmax(75px, 1fr));
+  grid-template-areas:
+    ". . . ."
+    ". . . item1"
+    "item2 item2 item2 item1"
+    "item2 item2 item2 .";
+ }
+</pre>
+<div id="placement-name" class="placement wrapper">
+  <div class="grid">
+    <div class="area">1</div>
+    <div class="area">2</div>
+    <div class="area">3</div>
+    <div class="area">4</div>
+    <div class="area">5</div>
+    <div class="area">6</div>
+    <div class="area">7</div>
+    <div class="area">8</div>
+    <div class="area">9</div>
+    <div class="area">10</div>
+    <div class="area">11</div>
+    <div class="area">12</div>
+    <div class="area">13</div>
+    <div class="area">14</div>
+    <div class="area">15</div>
+    <div class="area">16</div>
+    <div id="item1" class="item">item 1</div>
+    <div id="item2" class="item">item 2</div>
+  </div>
+</div>
+
+<hr>
+
+<h1>Responsive</h1>
+<pre>
+.header { grid-area: header; }
+.menu { grid-area: menu; }
+.hero { grid-area: hero; }
+.main { grid-area: main; }
+.banner { grid-area: banner; }
+.extra { grid-area: extra; }
+.image { grid-area: image; }
+
+.grid {
+  @media (min-width: 721px) {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 40px 2fr repeat(4, 1fr);
+    grid-template-areas:
+    "header header header header"
+    "hero hero hero hero"
+    "menu main main main"
+    "menu main main main"
+    "menu banner banner banner"
+    "menu extra image image";
+  }
+
+  @media (min-width: 1001px) {
+    grid-template-areas:
+      "header menu menu menu"
+      "hero hero hero hero"
+      "hero hero hero hero"
+      "main main . image"
+      "main main . extra"
+      "banner banner banner banner";
+  }
+}
+</pre>
+<div id="responsive" class="wrapper">
+  <div class="grid">
+    <div class="child header"></div>
+    <div class="child menu"></div>
+    <div class="child hero"></div>
+    <div class="child main"></div>
+    <div class="child banner"></div>
+    <div class="child extra"></div>
+    <div class="child image"></div>
+  </div>
+</div>
+
+<hr>
+
+<h1>Overlap</h1>
+<pre>
+.toolbar {
+  grid-column: 4;
+  grid-row: 1 / -1;
+  opacity: .85;
+  z-index: 1;
+}
+</pre>
+<div id="overlap" class="wrapper">
+  <div class="grid tablet">
+    <div class="child header"></div>
+    <div class="child menu"></div>
+    <div class="child hero"></div>
+    <div class="child main"></div>
+    <div class="child banner"></div>
+    <div class="child extra"></div>
+    <div class="child image"></div>
+    <div class="child toolbar"></div>
+  </div>
+</div>
+
+<hr>
+
+<h1>Grid gap</h1>
+<pre>
+
+#grid-gap {
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 40px 2fr repeat(4, 1fr);
+    grid-gap: 5px;
+    grid-template-areas: 
+      "header menu menu menu"
+      "hero hero hero hero"
+      "hero hero hero hero"
+      "main main . image"
+      "main main . extra"
+      "banner banner banner banner";
+  }
+}  
+</pre>
+<div id="grid-gap" class="wrapper">
+  <div class="grid desktop">
+    <div class="child header"></div>
+    <div class="child menu"></div>
+    <div class="child hero"></div>
+    <div class="child main"></div>
+    <div class="child banner"></div>
+    <div class="child extra"></div>
+    <div class="child image"></div>
+  </div>
+</div>
+
+<hr>
+
+<h1>Fall back</h1>
+<pre>
+
+#fallback {
+  //DEFINE MOBILE SPECIFIC STYLES HERE
+
+  .grid {
+    @media (min-width: 721px) {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: 40px 2fr repeat(4, 1fr);
+      grid-template-areas:
+        "header header header header"
+        "hero hero hero hero"
+        "menu main main main"
+        "menu main main main"
+        "menu banner banner banner"
+        "menu extra image image";
+    }
+
+    @media (min-width: 1001px) {
+      grid-template-areas:
+        "header menu menu menu"
+        "hero hero hero hero"
+        "hero hero hero hero"
+        "main main . image"
+        "main main . extra"
+        "banner banner banner banner";
+    }
+  }
+  
+  // Browsers that dont support grid
+  @supports not (display:grid) {
+    @media (min-width: 721px) {
+      .header,
+      .extra {
+        float: left;
+        width: 50%;
+      }
+    }
+  }
+  
+  // Browsers that dont support grid nor '@supports' (IE10, 11)
+  @media (min-width: 721px) and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .header,
+    .extra {
+      float: left;
+      width: 50%;
+    }
+  }
+}
+</pre>
+<div id="fallback" class="wrapper">
+  <div class="grid">
+    <div class="child header"></div>
+    <div class="child menu"></div>
+    <div class="child hero"></div>
+    <div class="child main"></div>
+    <div class="child banner"></div>
+    <div class="child extra"></div>
+    <div class="child image"></div>
+  </div>
+</div>
+
+</body>
+</html>

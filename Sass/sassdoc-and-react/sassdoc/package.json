@@ -1,0 +1,20 @@
+{
+  "name": "sassdoc-example",
+  "version": "1.0.0",
+  "description": "A simple example of how you can use sassdoc to create self-sustaining documentation for SASS files",
+  "repository": "https://github.com/MrFirthy/code-commenting",
+  "scripts": {
+    "build": "gulp"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.13",
+    "gulp": "^3.9.1",
+    "gulp-load-plugins": "1.4.0",
+    "gulp-notify": "2.2.0",
+    "gulp-rename": "1.2.2",
+    "gulp-sass": "^3.1.0",
+    "sassdoc": "2.1.20"
+  },
+  "author": "Ashley Firth",
+  "license": "ISC"
+}

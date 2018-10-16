@@ -1,0 +1,49 @@
+/* -----------------------------------------------------------------------------
+ * Variables
+ * -------------------------------------------------------------------------- */
+
+/* -----------------------------------------------------------------------------
+ * Colours
+ * -------------------------------------------------------------------------- */
+
+/// @group colours
+///
+/// @name body-bg
+///
+/// @prop {Color} body-bg [#efefef] - Colour of the body
+$body-bg: #ffffff;
+
+/// @group colours
+///
+/// @name red
+///
+/// @prop {Color} red [#c70505] - Our default shade of red
+$red: #c70505;
+
+
+/// @group colours
+///
+/// @name colors-blue
+/// @prop {Color} blue [#0a3473] - Blue
+/// @prop {Color} blueDark [#00183c] - Dark blue
+/// @prop {Color} blueExtraLight [#6ce9ff] - Extra light blue
+/// @prop {Color} blueLight [#21c9e6] - Light blue
+$colors-blue: #0a3473;
+$colors-blueDark: #00183c;
+$colors-blueExtraLight: #6ce9ff;
+$colors-blueLight: #21c9e6;
+$colors-blueNavy: #00183d;
+
+/// @group breakpoints
+///
+/// @name breakpoints
+/// @prop {Size} xs [0] - XS
+/// @prop {Size} phone [450px] - Phone
+/// @prop {Size} tablet [768px] - Tablet
+/// @prop {Size} desktop [960px] - Desktop
+$breakpoints: (
+    xs: 0,
+    phone: 450px,
+    tablet: 768px,
+    desktop: 960px
+);

@@ -1,0 +1,29 @@
+/* -----------------------------------------------------------------------------
+ * Home
+ * -------------------------------------------------------------------------- */
+body {
+	font-family: 'Noto Serif', serif;
+	background-color: $body-bg;
+}
+
+.content {
+	width: breakpoint-var(tablet);
+	margin: 0 auto;
+	text-align: center;
+}
+
+.squares {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.square-1 {
+	@include square() {
+		margin-right: 50px;
+	}
+}
+
+.square-2 {
+	@include square(100px, $colors-blueExtraLight, $colors-blueDark, 5px);
+}

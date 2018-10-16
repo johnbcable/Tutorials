@@ -1,0 +1,30 @@
+{
+  "name": "react-docgen",
+  "version": "0.1.0",
+  "private": true,
+  "devDependencies": {
+    "gh-pages": "^1.0.0",
+    "gulp": "^3.9.1",
+    "gulp-load-plugins": "1.4.0",
+    "gulp-shell": "0.5.2",
+    "npm-run-all": "4.1.1"
+  },
+  "dependencies": {
+    "prop-types": "^15.5.10",
+    "react": "^15.6.1",
+    "react-docgen": "^2.13.0",
+    "react-dom": "^15.6.1",
+    "react-scripts": "1.0.13"
+  },
+  "homepage": "http://mrfirthy.github.io/articles/code-commenting/react-docgen",
+  "scripts": {
+    "start": "npm-run-all --parallel --continue-on-error server docs",
+    "server": "react-scripts start",
+    "docs": "gulp",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  }
+}
