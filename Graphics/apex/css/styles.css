@@ -11,3 +11,17 @@ h1 {
 	font-size: 25px;
 	color: #167676;
 }
+
+.circle {
+	position: absolute;
+	transition-property: 55%;
+	right: 20%;
+	padding: 10px;
+}
+
+.radial {
+	position: absolute;
+	transition-property: 55%;
+	left: 20%;
+	padding: 10px;
+}
