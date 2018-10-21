@@ -1,4 +1,4 @@
-require('dotenv').config({ path: '.env'})
+require('dotenv').config({ path: '.env' })
 const express = require('express')
 const cors = require('cors')
 const graphqlHTTP = require('express-graphql')
@@ -39,7 +39,7 @@ const schema = buildASTSchema(gql`
 
   input PostInput {
     id: ID
-    body: String!
+    body: String 
   }  
 `)
 
@@ -88,7 +88,7 @@ const rootValue = {
   posts: () => POSTS.values(),
   post: ({ id }) => POSTS.get(id),
   authors: () => PEOPLE.values(),
-  author: ({ id }) => PEOPLE.get(id),  
+  author: ({ id }) => PEOPLE.get(id),
   submitPost: async ({ input }, { headers }) => {
     const authorId = await getUserId(headers)
     if (!authorId) return null
