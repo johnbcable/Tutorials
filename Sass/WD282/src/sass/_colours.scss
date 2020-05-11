@@ -1,0 +1,9 @@
+$red: random(255);
+$green: random(255);
+$blue: random(255);
+$colour-primary: rgb($red, $green, $blue); 
+$colour-secondary: lighten($colour-primary, 25%);
+$colour-light: lighten($colour-primary, 75%);
+$colour-highlight1: lighten(complement($colour-primary), 50%);
+$colour-highlight2: lighten(complement($colour-secondary), 50%);
+

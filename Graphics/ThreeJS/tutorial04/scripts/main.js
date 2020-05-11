@@ -24,7 +24,7 @@ camera.rotation.y=.5;
 var renderer = new THREE.WebGLRenderer( {
 	antialias: true
 });
-renderer.setPixelRation( window.devicePixelRatio )
+renderer.setPixelRatio( window.devicePixelRatio )
 renderer.setSize( window.innerWidth, window.innerHeight );
 
 document.body.appendChild( renderer.domElement );
@@ -33,55 +33,56 @@ document.body.appendChild( renderer.domElement );
 var envMap = new THREE.CubeTextureLoader()
 	.setPath('assets/')
 	.load( ['posx.jpg', 'negx.jpg', 'posy.jpg', 'negy.jpg', 'posz.jpg', 'negz.jpg']);
-// create a 3D Torus knot object
-// var geometry = new THREE.TorusKnotBufferGeometry( 1, .4, 60, 60 );
 
-// create a 3D Torus knot object
-var geometry = new THREE.SphereBufferGeometry( 2, 60, 60 );
-
-// load texture
-var texture = new THREE.TextureLoader().load("assets/rock_01_diffusion.jpg");
-// set some texture properties
-// texture.wrapS = THREE.RepeatWrapping;
-// texture.wrapT = THREE.RepeatWrapping;
-// texture.repeat.set( 4, 1 );
-
-// create a material with the loaded texture
-//var material = new THREE.MeshBasicMaterial( { map: texture });
-
-// create a Lambert material with the loaded texture
-// var material = new THREE.MeshLambertMaterial( { map: texture });
-
-// create a Phong material with the loaded texture
-// var material = new THREE.MeshPhongMaterial( { map: texture, specular: 0x333333, reflectivity:1.0 });
-
-// create a Physical material with the loaded texture and environment map
-var material = new THREE.MeshPhysicalMaterial( { map: texture, envMap:envMap, metalness:1.0, roughness:0.2 });
-
-// apply environment map to scene
 scene.background = envMap;
 
-// create an ambient light
-var light = new THREE.AmbientLight( 0xffeecc, .4 );
-scene.add( light );
+// create a loop fort object creation
+for(i=0; i<=num; i++) {
+	// create a 3D Torus knot object
+	var geometry = new THREE.SphereBufferGeometry( 1, 30, 30 );
 
-// create a directional light
-var dirlight = new THREE.DirectionalLight( 0xffdd99, 1.9 );
-scene.add( dirlight );
-dirlight.position.set( -10, 10, 0 );
+	// create a Physical material with the loaded texture and environment map
+	var material = new THREE.MeshPhysicalMaterial( { envMap:envMap, metalness:1.0, roughness:0.0 });
 
-// create a mesh from the geometry and material
-var object = new THREE.Mesh( geometry, material );
-object.castShadow = true;
+	// create object
+	var object = new THREE.Mesh( geometry, material );
 
-// add the cube to the scene
-scene.add( object );
+	// set random position
+	object.position.set(Math.random() * 20.0 -10.0, Math.random() * 20 -10.0, Math.random() * 20 -10.0 );
+
+	// calc distance as a constant and assign to object
+	var a = new THREE.Vector3 ( 0, 0, 0 );
+	var b = object.position;
+	var d = a.distanceTo( b );
+	object.distance = d;
+
+	// define two random but constantn angles in radians
+	object.radians = Math.random() * 360 * Math.PI/180;				// Initial angle
+	object.radians2 = Math.random() * 360 * Math.PI/180;			// Initial angle
+
+	// add object to the scene and to the array
+	scene.add( object );
+	objects.push ( object );
+
+}
 
 // render the scene
 var animate = function () {
 	requestAnimationFrame( animate );
-	object.rotation.x += 0.01;
-	object.rotation.y += 0.03;
+	for ( i=0; i<=num; i++) {
+		var o = objects[i];
+		// update angle of rotation for the object
+		if (i % 2 == 0) {
+			o.radians += .01;
+			o.radians2 += .01;
+		} else {
+			o.radians -= .01;
+			o.radians2 -= .01;
+		}
+		o.position.x = (Math.cos(o.radians) * o.distance);
+		o.position.z = (Math.sin(o.radians) * o.distance);
+		o.position.y = (Math.sin(o.radians2) * o.distance * .5);
+	}
 	renderer.render( scene, camera );
 }
 animate();
@@ -94,3 +95,54 @@ window.addEventListener( 'resize', function () {
 	renderer.setSize( window.innerWidth, window.innerHeight );
 }, false );
 
+document.addEventListener( 'mousedown', onDocumentMouseDown, false);
+
+document.addEventListener( 'mousemove', onDocumentMouseMove, false);
+
+document.addEventListener( 'touchstart', onDocumentTouchStart, false);
+
+function onDocumentMouseDown( event ) {
+	event.preventDefault();
+	mouse.x = ( event.clientX / renderer.domElement.clientWidth ) * 2 - 1;
+	mouse.y = ( event.clientY / renderer.domElement.clientHeight ) * 2 + 1;
+	raycaster.setFromCamera ( mouse, camera );
+	// check for intersecting objects
+	var intersects = raycaster.intersectObjects( objects, true );
+	if (intersects.length > 0) {
+		active = intersects[0].object;			// get the first obejct intersected
+		// change its material to a random colour
+		active.material.color.setHex( Math.random() * 0xffffff );
+	}
+}
+
+function onDocumentMouseMove( event ) {
+	// event.preventDefault();
+	mouse.x = ( event.clientX / renderer.domElement.clientWidth ) * 2 - 1;
+	mouse.y = ( event.clientY / renderer.domElement.clientHeight ) * 2 + 1;
+	raycaster.setFromCamera ( mouse, camera );
+	// check for intersecting objects
+	var intersects = raycaster.intersectObjects( objects, true );
+	if (intersects.length > 0) {
+		document.body.style.cursor = "pointer";		// change cursor to a pointer
+		// change its material to a random colour
+	} else {
+		document.body.style.cursor = "default";	
+	}
+}
+
+function onDocumentTouchStart (event) {
+	if (event.touches.length === 1) {
+		event.preventDefault();
+		mouse.x = +(event.targetTouches[0].pageX / window.innerWidth) * 2 - 1;
+		mouse.y = -(event.targetTouches[0].pageY / window.innerHeight) * 2 + 1;
+		raycaster.setFromCamera ( mouse, camera );
+		// check for intersecting objects
+		var intersects = raycaster.intersectObjects( objects, true );
+		if (intersects.length > 0) {
+			active = intersects[0].object;			// get the first obejct intersected
+			// change its material to a random colour
+			active.material.color.setHex( Math.random() * 0xffffff );
+		}
+
+	}
+}

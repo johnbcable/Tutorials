@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+   <html lang="en-US">
+   <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>CSS Master: Chapter 6 - Percentage keyframes</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../../css/base.css">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+        <style>
+          html, body {
+            height: 100%;
+          }
+
+          @-webkit-keyframes wiggle {
+            0% {
+              -webkit-transform: skewY(5deg) rotate(5deg) scale(0.25);
+            }
+            25% {
+              -webkit-transform: skewX(-5deg) rotate(-5deg);
+            }
+            50% {
+              -webkit-transform: skewY(5deg) rotate(5deg) scale(1.5);
+            }
+            75% {
+              -webkit-transform: skewX(-5deg) rotate(-5deg);
+            }
+            100% {
+              -webkit-transform: scale(1.5);
+            }
+          }
+          @keyframes wiggle {
+            0% {
+              transform: skewY(5deg) rotate(5deg) scale(0.25);
+            }
+            25% {
+              transform: skewX(-5deg) rotate(-5deg);
+            }
+            50% {
+              transform: skewY(5deg) rotate(5deg) scale(1.5);
+            }
+            75% {
+              transform: skewX(-5deg) rotate(-5deg);
+            }
+            100% {
+              transform: scale(1.5);
+            }
+          }
+          .content {
+            position: relative;
+          }
+
+          .svgwrap {
+            height: 200px;
+            margin: 100px;
+            width: 200px;
+            transform: scale(0.25);
+          }
+
+          .wiggle {
+            -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+            -webkit-animation-name: wiggle;
+            animation-name: wiggle;
+          }
+
+          .delay1s {
+            -webkit-animation-delay: 500ms;
+            animation-delay: 500ms;
+          }
+
+          .none {
+            -webkit-animation-fill-mode: none;
+            animation-fill-mode: none;
+          }
+
+          .backwards {
+            -webkit-animation-fill-mode: backwards;
+            animation-fill-mode: backwards;
+          }
+
+          .forwards {
+            -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+          }
+
+          .both {
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+          }
+
+        </style>
+	</head>
+        
+    <body>
+       <header>
+            <h1><i>CSS Master</i> Code Examples: Chapter 5</h1>
+            <nav><a href="../index.html">Back to chapter demo list</a></nav>
+        </header>
+
+        <main class="content">  
+            <h2>Using percentage keyframes </h2>
+            
+            <section class="animate">
+                <p>
+                    <button type="button" class="trigger" data-classname="wiggle">Toggle animation</button>
+                </p>
+
+                <div class="svgwrap">
+                    <img src="../img/csscircle.svg">
+                </div>
+               
+            </section>
+
+        </main>
+
+
+        <footer>
+            <p>
+                Examples from <i>CSS Master</i> written by Tiffany B. Brown and published by SitePoint Pty. Ltd. &copy; 2015-2018.
+            </p>
+        </footer>
+
+   
+
+        <script type="text/javascript" src="../js/stop-anim.js"></script>
+
+    </body>
+</html>

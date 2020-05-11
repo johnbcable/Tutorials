@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+   <html lang="en-US">
+   <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>CSS Master: Chapter 6 - animation-play-state</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../../fonts/fonts.css">
+        <link rel="stylesheet" href="../../css/base.css">
+        <style>
+        html, body {
+          height: 100%;
+        }
+
+        .square {
+          position: relative;
+        }
+
+        .svgwrap {
+          height: 300px;
+          margin: 100px;
+          width: 100%;
+          max-width: 300px;
+        }
+        .svgwrap img {
+          width: 100%;
+          display: block;
+        }
+
+        @-webkit-keyframes wobble {
+          from {
+            -webkit-transform: skewY(45deg);
+          }
+          50% {
+            -webkit-transform: scale(0.6);
+          }
+          to {
+            -webkit-transform: skewY(-45deg);
+          }
+        }
+        @keyframes wobble {
+          from {
+            transform: skewY(15deg);
+          }
+          to {
+            transform: skewY(-45deg);
+          }
+        }
+        .wobble {
+          -webkit-animation: wobble 3s ease-in infinite forwards alternate;
+          animation: wobble 3s ease-in infinite forwards alternate;
+          -webkit-animation-play-state: paused;
+          animation-play-state: paused;
+        }
+
+        .running {
+          -webkit-animation-play-state: running;
+          animation-play-state: running;
+        }
+
+        .half {
+          -webkit-align-self: flex-start;
+          align-self: flex-start;
+        }
+
+        .finite {
+          -webkit-animation-iteration-count: 5;
+          animation-iteration-count: 5;
+        }
+        </style>
+	  </head>
+        
+    <body>
+       <header>
+            <h1><i>CSS Master</i> Code Examples: Chapter 5</h1>
+            <nav><a href="../index.html">Back to chapter demo list</a></nav>
+        </header>
+
+        <main class="content">  
+            <h2>The <code>animation-play-state</code> property</h2> 
+            <p>Click the button below to toggle between the <code>running</code> and <code>paused</code> states.</p>
+            <section class="animate">
+                <p>
+                    <button type="button" class="trigger">Toggle play state</button>
+                </p>
+
+                <div class="svgwrap wobble">
+                    <img src="../img/csscircle.svg">
+                </div>         
+            </section>
+
+        </main>
+
+
+        <footer>
+            <p>
+                Examples from <i>CSS Master</i> written by Tiffany B. Brown and published by SitePoint Pty. Ltd. &copy; 2015-2018.
+            </p>
+        </footer>
+
+   
+
+        <script type="text/javascript" src="../js/play-pause.js"></script>
+
+    </body>
+</html>

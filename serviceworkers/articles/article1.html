@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Article 1</title>
+	<meta name="description" content="My first article" />
+</head>
+<body>
+	<h1>Article 1</h1>
+	<p>
+		Here is an edited dummy article that I can cache after first visit.
+	</p>
+
+<script type="text/javascript">
+if(navigator.serviceWorker) {
+	// Now register the serviceworker
+		// Create a button element
+		const offlinebutton = document.createElement('button');
+		offlinebutton.innerText = 'Save for offline';
+		offlinebutton.className = 'btn--offline';
+		const docbody = document.body;
+		docbody.appendChild(offlinebutton);
+
+		offlinebutton.addEventListener('click', function(event) {
+			// Put page in the cache
+			event.preventDefault();
+			const offlinebutton = this;
+			// Feedback to user
+			offlinebutton.innerText = 'Saving ...';
+			// Open a cache
+			caches.open('savedpages')
+			.then( function(cache) {
+				// Add the URL of the current page to the cache
+				cache.add(window.location.href)
+				.then ( function() {
+					// Save data about this page in localStorage
+					const data = {
+						"title": document.querySelector('title').innerText,
+						"description": document.querySelector('meta[name="description"]').getAttribute('content')
+					};
+					localStorage.setItem(
+						window.location.href,
+						JSON.stringify(data)
+					);
+					// Feedback to user
+					offlinebutton.innerText = 'Saved for offline!';
+				});
+			});
+		});
+}
+</script>
+</body>
+</html>

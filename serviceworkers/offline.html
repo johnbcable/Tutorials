@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>You are offline</title>
+</head>
+<body>
+	<h1>Oops!</h1>
+	<p>
+		You are offline or the page you requested isnt there any more
+	</p>
+	<p>
+		You can still read these pages:
+	</p>
+	<div id="history"></div>
+		<script>
+			let markup = '';
+			// Open the cache of pges
+			caches.open('savedpages')
+			.then ( pagesCache => {
+				pagesCache.keys()
+				.then (keys => {
+					let markup = '';
+					// Loop through each item in the cache
+					keys.forEach( request => {
+						// look up corresponding metadata in local storage
+						const data = JSON.parse(localStorage.getItem(request.url));
+						// Make a descriptive link to the URL of each page
+						if ( data ) {
+							markup += `<h3><a href="${request.url}">${data.title}</a></h3>`;
+							markup += `<p>${data.description}</p>`;
+						}
+					});
+					// Finally, display the list of links
+					document.getElementById('history').innerHTML = markup;
+				});
+			});
+		</script>
+	</ul>
+
+
+</body>
+</html>

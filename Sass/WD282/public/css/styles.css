@@ -1,0 +1,81 @@
+a, .profile-header a {
+  font-size: 16px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 10px;
+  border-radius: 5px; }
+
+body {
+  font-family: sans-serif;
+  text-align: center;
+  background: linear-gradient(155deg, #423213 70%, #a57d30 70%);
+  color: #f6eede;
+  min-height: 100vh; }
+
+h1 {
+  color: #7b9bd9; }
+
+h2 {
+  color: #dee6f6; }
+
+a {
+  color: #423213;
+  background-color: #dee6f6; }
+
+.profile-header a {
+  color: #f6eede;
+  background-color: #a57d30; }
+
+.profile-body {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around;
+  margin-top: 32px;
+  margin-left: 10vw;
+  margin-right: 10vw; }
+  @media screen and (max-width: 800px) {
+    .profile-body {
+      flex-direction: column; } }
+
+.profile-section {
+  position: relative;
+  position: relative;
+  margin: 120px 16px 120px 16px;
+  color: #423213;
+  background-color: #7b9bd9;
+  background-color: #7b9bd9;
+  color: #423213;
+  width: 340px; }
+  .profile-section::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' viewBox='0 0 100 100' fill='rgb(123,155,217)' fill-opacity='1'%3E%3Cpolygon points='0,0 100,0 0,100'%3E%3C/polygon%3E%3C/svg%3E");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    content: '';
+    height: 100px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    width: 100%;
+    z-index: 1;
+    bottom: -100px; }
+  .profile-section::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='none' viewBox='0 0 100 100' fill='rgb(123,155,217)' fill-opacity='1'%3E%3Cpolygon points='0,100 100,100 0,0'%3E%3C/polygon%3E%3C/svg%3E");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    content: '';
+    height: 100px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    width: 100%;
+    z-index: 1;
+    top: -100px; }
+  .profile-section .profile-content {
+    padding: 20px; }
+  @media screen and (max-width: 800px) {
+    .profile-section {
+      width: 100%; } }
+
+/*# sourceMappingURL=styles.css.map */
