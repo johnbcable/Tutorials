@@ -1,0 +1,10 @@
+
+1.  Define the data model for the GraphQL  (in schema.graphql)
+		Structure of the various type's in the model
+2.  Define the GraphQL schema for that model   (schema.graphql)
+		Query, Mutation and Subscription
+            Query is added to the schema definition started off 
+            with models (appears BEFORE yhe model[s] it uses.
+            Mutations normally correspond to the HTTP POST, PUT 
+            and DELETE requests of a REST API
+3.  Implement resolvers for the schema  (in normal JS file e.g. index.js)

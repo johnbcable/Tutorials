@@ -1,2 +1,0 @@
-# JAMstackExample
-Example JAMstack development
