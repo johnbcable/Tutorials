@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>My Example JAMstack Site</title>
+    <link>/</link>
+    <description>Recent content on My Example JAMstack Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 14 Nov 2018 19:02:50 -0700</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>tech</title>
+      <link>/tech/</link>
+      <pubDate>Wed, 14 Nov 2018 19:02:50 -0700</pubDate>
+      
+      <guid>/tech/</guid>
+      <description> Victor Hugo A Hugo boilerplate for creating truly epic websites This is a boilerplate for using Hugo as a static site generator and Webpack as your asset pipeline. Victor Hugo setup to use PostCSS and Babel for CSS and JavaScript compiling/transpiling. This project is released under the MIT license. Please make sure you understand its implications and guarantees.
+Enjoy!! 😸 </description>
+    </item>
+    
+  </channel>
+</rss>
