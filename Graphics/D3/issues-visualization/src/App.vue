@@ -10,11 +10,15 @@
         >
       </div>
     </form>
+<<<<<<< HEAD
     <chart :issues="issues"></chart>
+=======
+>>>>>>> c8edc1335652aa8c22b5ae4ee996e45e523ef394
   </div>
 </template>
 
 <script>
+<<<<<<< HEAD
 import moment from "moment";
 import axios from "axios";
 import Chart from './components/Chart.vue';
@@ -78,6 +82,16 @@ export default {
       }
     };
 
+=======
+import HelloWorld from './components/HelloWorld.vue'
+
+export default {
+  name: 'app',
+  components: {
+    HelloWorld
+  }
+}
+>>>>>>> c8edc1335652aa8c22b5ae4ee996e45e523ef394
 </script>
 
 <style>

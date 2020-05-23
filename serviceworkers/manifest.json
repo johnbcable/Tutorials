@@ -1,0 +1,11 @@
+{
+	"lang": "en",
+	"name": "Serviceworker book tutorial site",
+	"short_name": "Serrviceworker tutorial",
+	"description": "A tutorial site to go with Jeremy Keith Going Offline book",
+	"theme_color": "#336699",
+	"backgroiund-color": "#336699",
+	"start_url": "/",
+	"display": "standalone",
+	"icons": []
+}

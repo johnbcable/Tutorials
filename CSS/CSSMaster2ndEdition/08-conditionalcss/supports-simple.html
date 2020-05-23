@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+   <html lang="en-US">
+   <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>@supports Simple Demo | CSS Master: Chapter 8</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../css/base.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+        <link rel="stylesheet" href="./css/supports.css">
+        <style>
+        @supports (text-decoration: underline wavy #e91e63) {
+          .title {
+            border: none;
+            font-style: normal;
+            text-decoration: underline wavy #e91e63;
+          }
+        }
+        @supports (text-decoration-color: #e91e63) and (text-decoration-style: double) {
+          #demo a {
+            text-decoration: underline double #0c0;
+          }
+        }
+        @supports (text-decoration-skip: ink) {
+          #demo a {
+            text-decoration-skip: ink;
+          }
+        }
+        @supports not (text-decoration-style: double) {
+          #demo a {
+            text-decoration: none;
+            border-bottom: 4px double #FF9800;
+          }
+        }
+</style>
+    </head>
+        
+    <body class="nested">
+        <header>
+            <h1><i>CSS Master</i> Code Examples: Chapter 8</h1>
+            <a href="./index.html">Back to chapter demo list</a>
+        </header>
+
+        <main class="content">  
+            <h2><code>@supports</code> simple demo</h2>
+            
+            <p>If the browser supports <code>@supports</code> <em>and</em> <code>text-decoration: underline wavy #c09</code>, the title <q>CSS Master</q> below will have a pink squiggly line below it. Otherwise, it will be italicized. If the browser does not support <code>text-decoration-style: double</code>, the link below will have a bottom border value of <code>4px double #0c0</code>. Otherwise it will use <code>text-decoration: underline double #0c0</code>.</p>
+
+            <section id="demo">
+                <p>The title of the book associated with this demo is <span class="title">CSS Master</span>. It is published by <a href="http://sitepoint.com/">Sitepoint</a>.</p>
+            </section>
+
+        </main>
+
+        <footer>
+            <p>
+                Examples from <i>CSS Master</i> written by Tiffany B. Brown and published by SitePoint Pty. Ltd. &copy; 2015-2018.
+            </p>
+        </footer> 
+    </body>
+</html>

@@ -1,0 +1,86 @@
+// imports
+@import "_colours.scss";
+
+// 3rd party imports
+@import "angled-edges/_angled-edges.scss";
+
+$style1: (foreground: $colour-light, background: $colour-secondary);
+$style2: (foreground: $colour-primary, background: $colour-highlight1);
+$style3: (foreground: $colour-primary, background: $colour-highlight2);
+
+// Placeholder calsses
+%link-shared {
+	font-size: 16px;
+	margin-left: 10px;
+	margin-right: 10px;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+// Mixins
+@mixin content-style($foreground,$background) {
+	color: $foreground;
+	background-color: $background;
+}
+@mixin transform($value) {
+	-webkit-transform: $value;
+	-moz-transform: $value;
+	-ms-transform: $value;
+	transform: $value;
+}
+
+// Main styling
+body {
+	font-family: sans-serif;
+	text-align: center;
+	background: linear-gradient(155deg, $colour-primary 70%, $colour-secondary 70%);
+	color: $colour-light;
+	min-height: 100vh;
+}
+h1 {
+	color: $colour-highlight1;
+}
+h2 {
+	color: $colour-highlight2;
+}
+
+a {
+	@extend %link-shared;
+	@include content-style($style3...);
+}
+.profile-header {
+	a {
+		@extend %link-shared;
+		@include content-style($style1...);
+	}
+}
+$breakpoint: 800px;
+.profile-body {
+	display: flex;
+	align-items: stretch;
+	justify-content: space-around;
+	margin-top: 32px;
+	margin-left: 10vw;
+	margin-right: 10vw;
+	@media screen and (max-width: $breakpoint) {
+		flex-direction: column;
+	}
+}
+
+.profile-section {
+	@include angled-edge("outside bottom", "lower right", $colour-highlight1);
+	@include angled-edge("outside top", "upper right", $colour-highlight1);
+	margin: 120px 16px 120px 16px;
+	@include content-style($style2...);
+	background-color: $colour-highlight1;
+	color: $colour-primary;
+	// margin: 16px;
+	// border-radius: 10px;
+	width: 340px;
+	.profile-content {
+		padding: 20px;
+	}
+	@media screen and (max-width: $breakpoint) {
+		width: 100%;
+	}
+}
